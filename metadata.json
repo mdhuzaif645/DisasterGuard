@@ -1,0 +1,10 @@
+{
+  "name": "DisasterGuard",
+  "description": "Comprehensive full-stack disaster preparedness and emergency response platform featuring real-time alerts, interactive hazard maps, SOS dispatch, shelter management, community reporting, family check-in, and AI safety assistant.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

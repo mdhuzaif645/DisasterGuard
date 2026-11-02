@@ -1,0 +1,1175 @@
+# DISASTERGUARD — COMPLETE FULL-STACK DISASTER PREPAREDNESS AND EMERGENCY RESPONSE PLATFORM
+
+## ROLE AND OBJECTIVE
+
+Act as a senior software architect, full-stack developer, database engineer, cybersecurity specialist, UI/UX designer, QA engineer, and DevOps engineer.
+
+Build a complete, functional, responsive web application called **DisasterGuard** for natural disaster preparedness, emergency alerts, public safety, evacuation assistance, rescue coordination, and disaster recovery.
+
+This is a comprehensive full-stack application, not a UI prototype.
+
+The system must include:
+- Complete frontend
+- Complete backend
+- Database and migrations
+- Authentication and authorization
+- Real-time alerts
+- Location-based services
+- Emergency SOS management
+- Interactive disaster maps
+- Shelter and evacuation management
+- Community reporting
+- Preparedness education
+- AI assistance
+- Notifications
+- Admin and responder portals
+- Offline functionality
+- Security and privacy controls
+- Testing
+- Deployment configuration
+- Documentation
+
+Do not omit required modules or leave unfinished placeholders.
+
+If a feature requires an external API, create the integration architecture, configuration, error handling, and setup instructions. Clearly identify features that require credentials or official data access.
+
+---
+
+# 1. TECHNOLOGY STACK
+
+Use a consistent, maintainable architecture.
+
+Frontend:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- shadcn/ui components where appropriate
+- Lucide icons
+- React Router
+- TanStack Query
+- React Hook Form
+- Zod validation
+- Leaflet and OpenStreetMap
+- Progressive Web App support
+
+Backend:
+- Node.js
+- Express
+- TypeScript
+- REST API
+- WebSocket or Supabase Realtime for live updates
+- Server-side validation
+- Centralized error handling
+
+Database and services:
+- Supabase PostgreSQL
+- Supabase Auth
+- Supabase Row Level Security
+- Supabase Storage
+- Supabase Realtime
+- Supabase Edge Functions or secure backend services where appropriate
+
+AI:
+- Gemini API through a secure server-side integration
+
+Notifications:
+- Firebase Cloud Messaging for web push
+- Email notification provider integration
+- SMS provider integration where configured
+- In-app notifications
+
+Deployment:
+- Vercel or equivalent frontend hosting
+- Render, Railway, or equivalent backend hosting
+- Supabase managed database
+
+Do not expose secret keys in frontend code.
+
+Keep the application modular, scalable, and easy to maintain.
+
+---
+
+# 2. USER ROLES AND ACCESS CONTROL
+
+Implement the following roles:
+
+1. Guest
+2. Citizen
+3. Emergency Responder
+4. Shelter Manager
+5. Disaster Authority
+6. System Administrator
+
+Guest:
+- View public disaster alerts.
+- View public preparedness guides.
+- View public shelter information.
+- Register or log in.
+
+Citizen:
+- Manage profile.
+- Receive local alerts.
+- Submit SOS requests.
+- Report hazards.
+- Find shelters.
+- Manage emergency contacts.
+- Share safety status.
+- Access preparedness tools.
+- Track personal emergency requests.
+
+Emergency Responder:
+- View assigned emergency requests.
+- Access relevant incident locations.
+- Accept or reject assignments.
+- Update rescue status.
+- Communicate relevant incident updates.
+- Mark requests completed.
+
+Shelter Manager:
+- Manage shelter details.
+- Update capacity and occupancy.
+- Update facilities and availability.
+- Report shelter closure or operational issues.
+
+Disaster Authority:
+- Create and verify official alerts.
+- Manage affected areas.
+- Review community reports.
+- Coordinate emergency response.
+- Manage shelters and evacuation notices.
+- Monitor incidents.
+
+System Administrator:
+- Manage users and roles.
+- Manage platform settings.
+- Manage data sources and integrations.
+- View audit logs.
+- Monitor system health.
+- Configure notification providers.
+
+Enforce permissions on the server and database. Never rely only on frontend role checks.
+
+---
+
+# 3. AUTHENTICATION AND USER PROFILE
+
+Implement:
+- User registration.
+- Login and logout.
+- Email verification.
+- Password reset.
+- Secure session management.
+- Optional Google OAuth.
+- User profile editing.
+- Profile photo upload.
+- Phone number field with verification integration.
+- Preferred language.
+- Home area or manually selected location.
+- Emergency contact management.
+- Notification preferences.
+- Location permission preferences.
+- Account deletion.
+- Data export.
+- Consent and privacy settings.
+
+Support secure authentication using Supabase Auth.
+
+Create onboarding that explains:
+- Location permissions.
+- Emergency notification permissions.
+- How SOS works.
+- Limitations of the application.
+- Privacy and data sharing.
+
+Allow users to manually select their location if GPS is unavailable or denied.
+
+---
+
+# 4. LANDING PAGE AND CITIZEN DASHBOARD
+
+Create a polished public landing page featuring:
+- Application overview.
+- Current active alerts.
+- Disaster preparedness information.
+- Emergency resources.
+- Shelter search.
+- Login and registration.
+- Clear emergency disclaimer.
+
+Citizen dashboard:
+- Current selected location.
+- Current weather conditions.
+- Active disaster alerts.
+- Regional hazard information.
+- Nearby shelters.
+- Preparedness checklist progress.
+- Recent reports.
+- Emergency contacts.
+- Family safety status.
+- Recent SOS requests.
+- Quick actions.
+
+Quick actions:
+- SOS emergency
+- View disaster map
+- Find shelter
+- Report a hazard
+- Mark myself safe
+- View safety guides
+
+Use clear visual hierarchy and accessible emergency severity indicators.
+
+---
+
+# 5. DISASTER ALERT MANAGEMENT SYSTEM
+
+Support:
+- Floods
+- Earthquakes
+- Cyclones
+- Tsunamis
+- Landslides
+- Wildfires
+- Severe storms
+- Extreme heat
+- Drought
+- Severe rainfall
+- Other natural hazards
+
+Each alert must contain:
+- Unique alert ID.
+- Title.
+- Disaster category.
+- Severity.
+- Description.
+- Issuing authority.
+- Source URL or source identifier.
+- Verification status.
+- Issue time.
+- Expiry time.
+- Affected geographic area.
+- Coordinates or geographic boundary.
+- Recommended safety actions.
+- Evacuation instructions if officially provided.
+- Languages available.
+- Alert status.
+- Last updated timestamp.
+
+Alert lifecycle:
+- Draft
+- Pending verification
+- Verified
+- Published
+- Updated
+- Expired
+- Cancelled
+
+Implement:
+- Authority alert creation.
+- Alert review and approval.
+- Alert publication.
+- Alert editing.
+- Alert cancellation.
+- Alert expiry.
+- Alert history.
+- Alert acknowledgement.
+- Duplicate alert detection.
+- Alert source attribution.
+- Geographic targeting.
+- Severity-based notifications.
+- Search and filtering.
+- User alert preferences.
+
+Official alerts must only be published by authorized authorities or verified official integrations.
+
+Community reports and AI-generated content must never be displayed as official warnings.
+
+Clearly distinguish:
+- Official verified alerts.
+- Simulated demonstration alerts.
+- Unverified community reports.
+- AI-generated informational guidance.
+
+---
+
+# 6. LOCATION-BASED ALERTS AND RISK INFORMATION
+
+Implement:
+- Browser geolocation with explicit permission.
+- Manual location selection.
+- Saved locations.
+- Location-based alert filtering.
+- Nearby hazard notifications.
+- Radius-based alert subscriptions.
+- Geographical area matching.
+- Location search.
+- Reverse geocoding integration.
+- Distance calculations.
+- Location permission handling.
+- GPS failure fallback.
+
+Allow users to subscribe to alerts for:
+- Current location.
+- Home location.
+- Saved locations.
+- Selected districts or regions.
+
+Do not claim to predict disasters with certainty.
+
+Any risk indicators must clearly explain their data source, timestamp, and limitations.
+
+---
+
+# 7. INTERACTIVE DISASTER MAP
+
+Create a full-screen interactive map using Leaflet and OpenStreetMap.
+
+Map layers:
+- Active official alerts.
+- Hazard-affected areas.
+- Shelters.
+- Hospitals.
+- Emergency services.
+- Community reports.
+- Evacuation routes.
+- Blocked roads.
+- Safe assembly points.
+- Relief camps.
+
+Map functionality:
+- Search location.
+- Current location.
+- Zoom and pan.
+- Layer controls.
+- Marker clustering.
+- Category filters.
+- Severity filters.
+- Marker information cards.
+- Shelter details.
+- Distance to shelters.
+- Directions.
+- Map legend.
+- Mobile-friendly map controls.
+
+Use verified route data where available.
+
+Do not invent safe routes, road closures, shelter availability, or hazard boundaries.
+
+Provide a list-based alternative for users who cannot use the map.
+
+---
+
+# 8. SOS AND EMERGENCY REQUEST MANAGEMENT
+
+Build a complete SOS system.
+
+SOS workflow:
+1. User selects emergency type.
+2. Request location permission.
+3. Capture GPS coordinates if available.
+4. Provide manual location fallback.
+5. Allow a description.
+6. Allow optional photo attachment.
+7. Confirm the request.
+8. Create a unique incident ID.
+9. Save the request securely.
+10. Notify authorized administrators and responders.
+11. Allow request tracking.
+12. Update the citizen about response status.
+
+Emergency categories:
+- Trapped person.
+- Medical emergency.
+- Flood rescue.
+- Fire-related emergency.
+- Missing person.
+- Food and water assistance.
+- Shelter assistance.
+- Other emergency.
+
+SOS status lifecycle:
+- Submitted
+- Acknowledged
+- Assigned
+- Responder En Route
+- In Progress
+- Resolved
+- Cancelled
+
+Implement:
+- SOS confirmation.
+- Duplicate request prevention.
+- Request cancellation.
+- Request history.
+- Priority classification.
+- Responder assignment.
+- Incident notes.
+- Status notifications.
+- Escalation for unacknowledged requests.
+- Incident closure.
+- Audit history.
+- Admin filters.
+- Responder assignment dashboard.
+
+Make clear that an SOS request only reaches the application's configured responders. Do not claim it automatically contacts government emergency services unless an authorized integration exists.
+
+Provide visible emergency contact information, including India's 112 emergency number where appropriate, while explaining that users should contact official emergency services directly when immediate assistance is required.
+
+---
+
+# 9. RESPONDER AND INCIDENT COORDINATION
+
+Create a responder portal with:
+- Responder profile.
+- Availability status.
+- Assigned incidents.
+- Incident priority.
+- Incident location.
+- Directions.
+- Contact details when authorized.
+- Incident history.
+- Status updates.
+- Notes.
+- Completion confirmation.
+
+Admin capabilities:
+- Assign responders.
+- Reassign requests.
+- Prioritize incidents.
+- Track request status.
+- View incidents on a map.
+- Identify unresolved requests.
+- Manage responder availability.
+
+Do not expose sensitive citizen information to unauthorized users.
+
+---
+
+# 10. SHELTER AND RELIEF RESOURCE MANAGEMENT
+
+Create a shelter directory.
+
+Shelter information:
+- Shelter name.
+- Address.
+- Coordinates.
+- Contact details.
+- Operating status.
+- Total capacity.
+- Current occupancy.
+- Available capacity.
+- Facilities.
+- Accessibility.
+- Medical support.
+- Food and water availability.
+- Family accommodation.
+- Pet accommodation where applicable.
+- Opening and closing information.
+- Last verification time.
+- Managing authority.
+
+Features:
+- Nearby shelter search.
+- Distance sorting.
+- Map and list views.
+- Shelter availability filters.
+- Directions.
+- Shelter details.
+- Shelter manager dashboard.
+- Occupancy updates.
+- Capacity management.
+- Shelter closure notices.
+- Verification status.
+
+Create relief resource tracking for:
+- Food.
+- Drinking water.
+- Medical supplies.
+- Blankets.
+- Clothing.
+- Rescue equipment.
+- Other essential resources.
+
+Allow authorized authorities to manage resource availability and distribution.
+
+---
+
+# 11. COMMUNITY HAZARD REPORTING
+
+Citizens can report:
+- Flooded roads.
+- Fallen trees.
+- Damaged buildings.
+- Landslides.
+- Fire outbreaks.
+- Blocked roads.
+- Damaged infrastructure.
+- Missing persons.
+- Other hazards.
+
+Each report contains:
+- Category.
+- Description.
+- Photo attachments.
+- Location.
+- Submission timestamp.
+- Reporter ID.
+- Verification status.
+- Moderation status.
+- Admin notes.
+
+Report workflow:
+- Submitted
+- Under Review
+- Verified
+- Rejected
+- Resolved
+
+Implement:
+- Image upload.
+- Location capture.
+- Manual location selection.
+- Report history.
+- Duplicate report detection.
+- Admin moderation.
+- Report map.
+- Report filtering.
+- Abuse reporting.
+- Privacy protection.
+
+Unverified reports must be labelled clearly.
+
+---
+
+# 12. PREPAREDNESS AND SAFETY EDUCATION
+
+Create a comprehensive preparedness center.
+
+Include disaster-specific guides for:
+- Floods.
+- Earthquakes.
+- Cyclones.
+- Landslides.
+- Wildfires.
+- Tsunamis.
+- Severe storms.
+- Extreme heat.
+- Drought.
+
+Each guide should include:
+- Before the disaster.
+- During the disaster.
+- After the disaster.
+- Do's and don'ts.
+- Evacuation guidance.
+- Emergency supplies.
+- Family safety instructions.
+- Official resource links.
+
+Create:
+- Emergency kit checklist.
+- Family emergency plan.
+- Important documents checklist.
+- Emergency contact list.
+- Household evacuation plan.
+- Medical needs checklist.
+- First-aid information.
+- Disaster preparedness quizzes.
+- Educational progress tracking.
+- Downloadable preparedness resources.
+
+Safety content must be reviewed against reliable official guidance.
+
+---
+
+# 13. FAMILY SAFETY AND CHECK-IN
+
+Implement:
+- Family group creation.
+- Invitation and consent workflow.
+- Emergency contact management.
+- Safety status updates.
+- Mark safe.
+- Request check-in.
+- Emergency notifications.
+- Last voluntarily shared location.
+- Family member status dashboard.
+
+Protect location information through explicit permissions.
+
+Do not continuously track users without consent.
+
+---
+
+# 14. AI DISASTER ASSISTANT
+
+Integrate Gemini API through a secure backend.
+
+Capabilities:
+- Explain official alerts in simple language.
+- Provide disaster preparedness guidance.
+- Answer safety-related questions.
+- Generate personalized emergency checklists.
+- Explain evacuation instructions.
+- Support multilingual communication.
+- Summarize official disaster information.
+- Help users understand emergency terminology.
+
+Safety requirements:
+- Use trusted sources for factual emergency guidance.
+- Clearly distinguish official instructions from AI explanations.
+- Never invent current alerts.
+- Never claim certainty about disaster predictions.
+- Never recommend unsafe evacuation routes.
+- Prioritize official instructions.
+- Provide emergency contact guidance.
+- Handle uncertain questions responsibly.
+- Do not expose private user data to the AI unnecessarily.
+
+---
+
+# 15. MULTILINGUAL SUPPORT AND ACCESSIBILITY
+
+Support:
+- English.
+- Kannada.
+- Hindi.
+- Additional languages through a scalable translation system.
+
+Implement:
+- Language selection.
+- Localized UI.
+- Localized safety guides.
+- Translated alert content where available.
+- Simple-language mode.
+- Screen-reader support.
+- Keyboard navigation.
+- Accessible form labels.
+- High-contrast design.
+- Large emergency buttons.
+- Responsive typography.
+- Color-independent alert indicators.
+
+Use appropriate date, time, and location formats.
+
+---
+
+# 16. NOTIFICATION SYSTEM
+
+Implement:
+- In-app notifications.
+- Web push notifications.
+- Email notifications.
+- SMS integration architecture.
+- Emergency contact notifications.
+- SOS status updates.
+- Alert publication notifications.
+- Shelter status changes.
+- Family safety notifications.
+
+Notification functionality:
+- User preferences.
+- Severity-based notification rules.
+- Geographic targeting.
+- Notification history.
+- Read/unread state.
+- Retry handling.
+- Delivery status.
+- Failed notification logs.
+- Duplicate notification prevention.
+
+Critical alerts must not be silently suppressed by ordinary preference settings when official policies require delivery.
+
+Do not claim a notification was delivered unless delivery status is confirmed by the provider.
+
+---
+
+# 17. OFFLINE AND LOW-CONNECTIVITY SUPPORT
+
+Implement PWA functionality.
+
+Offline capabilities:
+- Installable application.
+- Cached app shell.
+- Saved preparedness guides.
+- Emergency contacts.
+- Previously downloaded shelter information.
+- Saved emergency checklist.
+- Offline SOS draft.
+- Offline community report draft.
+- Connection status indicator.
+- Retry queue for eligible submissions.
+- Sync when connectivity returns.
+
+Clearly display the last update time for cached information.
+
+Never show stale shelter capacity or old alerts as current without a timestamp.
+
+Do not claim SOS requests were submitted while offline.
+
+---
+
+# 18. ADMINISTRATION AND PLATFORM MANAGEMENT
+
+Create a complete authority dashboard with:
+
+Overview:
+- Registered users.
+- Active alerts.
+- Critical alerts.
+- Incoming SOS requests.
+- Pending reports.
+- Active incidents.
+- Available shelters.
+- Responders online.
+- Disaster statistics.
+
+Management modules:
+- Alert management.
+- User management.
+- Role management.
+- SOS management.
+- Incident assignment.
+- Shelter management.
+- Resource management.
+- Community report moderation.
+- Responder management.
+- Notification management.
+- Data source management.
+- Audit logs.
+- Platform settings.
+
+Add:
+- Search.
+- Sorting.
+- Pagination.
+- Filters.
+- Export options.
+- Confirmation dialogs.
+- Loading states.
+- Empty states.
+- Error states.
+
+---
+
+# 19. DATABASE SCHEMA
+
+Create normalized PostgreSQL tables with primary keys, foreign keys, timestamps, constraints, and indexes.
+
+Required tables:
+
+1. profiles
+2. user_roles
+3. emergency_contacts
+4. family_groups
+5. family_members
+6. family_safety_status
+7. saved_locations
+8. disaster_alerts
+9. alert_geographic_areas
+10. alert_acknowledgements
+11. alert_subscriptions
+12. disaster_reports
+13. report_attachments
+14. shelters
+15. shelter_occupancy_updates
+16. shelter_facilities
+17. relief_resources
+18. sos_requests
+19. sos_attachments
+20. emergency_assignments
+21. responders
+22. responder_availability
+23. incident_updates
+24. notifications
+25. notification_preferences
+26. notification_delivery_logs
+27. preparedness_guides
+28. preparedness_checklists
+29. preparedness_progress
+30. ai_conversation_sessions
+31. ai_conversation_messages
+32. data_sources
+33. audit_logs
+34. app_settings
+
+Implement:
+- Database migrations.
+- Seed data.
+- Foreign key constraints.
+- Appropriate indexes.
+- Check constraints.
+- Soft deletion where appropriate.
+- Automatic updated timestamps.
+- Secure Row Level Security.
+- Role-specific access policies.
+
+Citizens must only access their own private records.
+
+Responders must only access authorized assigned incidents.
+
+Shelter managers must only manage permitted shelters.
+
+Authorities must have scoped administrative access.
+
+System administrators must have controlled platform-wide access.
+
+Do not store secrets or unnecessary sensitive information in database records.
+
+---
+
+# 20. BACKEND API REQUIREMENTS
+
+Create organized REST API routes for:
+
+Authentication and profile:
+- /api/auth
+- /api/profile
+- /api/emergency-contacts
+- /api/saved-locations
+
+Alerts:
+- /api/alerts
+- /api/alerts/:id
+- /api/alerts/:id/acknowledge
+- /api/alerts/:id/history
+
+Maps and locations:
+- /api/locations
+- /api/hazards
+- /api/shelters/nearby
+
+SOS:
+- /api/sos
+- /api/sos/:id
+- /api/sos/:id/cancel
+- /api/sos/:id/status
+- /api/sos/:id/assign
+
+Shelters:
+- /api/shelters
+- /api/shelters/:id
+- /api/shelters/:id/occupancy
+
+Community reports:
+- /api/reports
+- /api/reports/:id
+- /api/reports/:id/verify
+
+Responders:
+- /api/responders
+- /api/responders/assignments
+- /api/responders/availability
+
+Notifications:
+- /api/notifications
+- /api/notifications/preferences
+
+Preparedness:
+- /api/guides
+- /api/checklists
+- /api/preparedness-progress
+
+AI:
+- /api/ai/chat
+- /api/ai/explain-alert
+
+Administration:
+- /api/admin
+- /api/admin/users
+- /api/admin/analytics
+- /api/admin/audit-logs
+- /api/admin/data-sources
+
+Use:
+- Proper HTTP status codes.
+- Request validation.
+- Pagination.
+- Consistent API response formats.
+- Authentication middleware.
+- Role authorization middleware.
+- Rate limiting.
+- Error handling.
+- API documentation.
+
+---
+
+# 21. EXTERNAL DATA INTEGRATIONS
+
+Create configurable adapters for official data sources.
+
+Potential sources:
+- India Meteorological Department.
+- National Disaster Management Authority.
+- National Disaster Response Force.
+- Central Water Commission flood information.
+- Government emergency alert services.
+- Official local disaster management authorities.
+- Weather data providers.
+- OpenStreetMap.
+- Geocoding providers.
+
+Do not assume every source has a publicly accessible API.
+
+For each integration:
+- Document the source.
+- Document authentication requirements.
+- Validate incoming data.
+- Record source timestamps.
+- Handle outages.
+- Handle rate limits.
+- Prevent duplicate alerts.
+- Preserve source attribution.
+- Provide mock/demo mode separately.
+
+If an official source cannot be integrated directly, provide a secure authority dashboard for manual alert entry.
+
+---
+
+# 22. SECURITY, PRIVACY, AND RELIABILITY
+
+Implement:
+- Secure authentication.
+- Authorization checks.
+- Row Level Security.
+- Input sanitization.
+- Rate limiting.
+- Secure file uploads.
+- File size and type validation.
+- API key protection.
+- CORS configuration.
+- Audit logging.
+- Error monitoring.
+- Request logging.
+- Data retention controls.
+- User consent.
+- Account deletion.
+- Privacy policy.
+- Terms of service.
+- Emergency disclaimer.
+- Backup and recovery documentation.
+
+Protect:
+- User identity.
+- Emergency contacts.
+- GPS coordinates.
+- SOS descriptions.
+- Uploaded images.
+- Family safety information.
+
+Avoid unnecessary location collection.
+
+Do not expose sensitive incident information through public endpoints.
+
+---
+
+# 23. USER EXPERIENCE REQUIREMENTS
+
+Every page must include:
+- Loading states.
+- Error states.
+- Empty states.
+- Success feedback.
+- Form validation.
+- Confirmation dialogs.
+- Responsive layout.
+- Mobile navigation.
+- Accessible controls.
+
+Use a consistent design system:
+- Navy and white foundation.
+- Red for critical emergencies.
+- Orange for high-risk alerts.
+- Yellow for moderate warnings.
+- Green for informational status.
+- Clear typography.
+- Consistent spacing.
+- Professional dashboard cards.
+- Accessible contrast.
+- Mobile-first layout.
+
+Create all pages:
+1. Landing page.
+2. Login.
+3. Registration.
+4. Forgot password.
+5. Citizen dashboard.
+6. Disaster alerts.
+7. Alert detail.
+8. Disaster map.
+9. SOS emergency.
+10. SOS tracking.
+11. Shelter directory.
+12. Shelter detail.
+13. Community reports.
+14. Report submission.
+15. Preparedness center.
+16. Safety guide detail.
+17. Emergency checklist.
+18. Family safety.
+19. Emergency contacts.
+20. AI assistant.
+21. Notifications.
+22. User profile.
+23. Settings.
+24. Admin dashboard.
+25. Alert management.
+26. SOS management.
+27. Shelter management.
+28. Report moderation.
+29. Responder dashboard.
+30. Responder assignments.
+31. Resource management.
+32. Audit logs.
+33. Not found page.
+
+---
+
+# 24. TESTING AND QUALITY ASSURANCE
+
+Create and run tests for:
+
+Authentication:
+- Registration.
+- Login.
+- Logout.
+- Password reset.
+- Role restrictions.
+
+Alerts:
+- Alert creation.
+- Alert verification.
+- Alert publication.
+- Geographic filtering.
+- Alert expiry.
+- Notification triggering.
+
+SOS:
+- Request creation.
+- Location handling.
+- Request assignment.
+- Status updates.
+- Cancellation.
+- Access control.
+
+Shelters:
+- Search.
+- Availability.
+- Capacity updates.
+- Role permissions.
+
+Reports:
+- Submission.
+- Upload validation.
+- Verification.
+- Moderation.
+
+Security:
+- Unauthorized access.
+- Cross-user data access.
+- RLS policies.
+- API validation.
+- Rate limiting.
+
+UI:
+- Desktop.
+- Tablet.
+- Mobile.
+- Accessibility.
+- Offline states.
+
+Use automated tests where practical and provide a manual testing checklist.
+
+---
+
+# 25. DEPLOYMENT AND DOCUMENTATION
+
+Create:
+- README.md
+- Environment variable example file.
+- Database migration files.
+- Seed scripts.
+- API documentation.
+- Installation instructions.
+- Local development instructions.
+- Production deployment instructions.
+- External API setup guide.
+- Notification configuration guide.
+- Admin account setup guide.
+- Testing instructions.
+- Troubleshooting guide.
+- Backup and recovery guide.
+- Security checklist.
+
+Document all required environment variables.
+
+Never place real secrets in source code or commit them to GitHub.
+
+---
+
+# 26. DEVELOPMENT EXECUTION RULES
+
+Build the application in phases, but maintain a complete implementation checklist.
+
+Phase 1:
+- Project structure.
+- Design system.
+- Authentication.
+- Database.
+- User roles.
+- Landing page.
+- Citizen dashboard.
+
+Phase 2:
+- Alerts.
+- Location services.
+- Interactive map.
+- Shelter directory.
+
+Phase 3:
+- SOS system.
+- Incident management.
+- Responder portal.
+- Community reporting.
+
+Phase 4:
+- Preparedness center.
+- Family safety.
+- AI assistant.
+- Notifications.
+- Offline functionality.
+
+Phase 5:
+- Admin dashboard.
+- Analytics.
+- Resource management.
+- Security hardening.
+
+Phase 6:
+- Integration testing.
+- Bug fixes.
+- Deployment.
+- Documentation.
+
+After each phase:
+1. Verify the code compiles.
+2. Run available tests.
+3. Confirm database integration.
+4. Confirm permissions.
+5. Confirm all buttons and forms work.
+6. Update the implementation checklist.
+7. Identify incomplete requirements.
+8. Fix issues before continuing.
+
+Do not claim a feature is complete unless it has been implemented and verified.
+
+Do not silently skip any requirement.
+
+If output limits prevent completing the entire application in one response, continue from the exact unfinished task while preserving the existing architecture and code.
+
+Start by creating the project structure, database schema, authentication system, and responsive application shell.
+
+Then implement every remaining feature systematically.
+
+The final result must be a complete, functional, secure, responsive disaster preparedness and emergency response platform with working frontend, backend, database, integrations, and deployment documentation.
